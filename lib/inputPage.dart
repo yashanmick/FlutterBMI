@@ -10,20 +10,64 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text(
+          'BMI CALCULATOR',
+          textAlign: TextAlign.center,
+        ),
       ),
-      body: Center(
-        child: Text('Body Text'),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                ),
+                Expanded(
+                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ReusableCard(colour: Color(0xFF1D1E33),),
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(colour: Colors.blue,),
+                ),
+                Expanded(
+                  child: ReusableCard(colour: Color(0xFF1D1E33),),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-      // floatingActionButton: Theme(
-      //   //customizing the button by adding theme properties
-      //   data: ThemeData(
-      //     accentColor: Color(0xFF8A92AD),
-      //   ),
-      //   child: FloatingActionButton(
-      //     child: Icon(Icons.add),
-      //   ),
-      // ),
+    );
+  }
+}
+
+//Key class is to track the state of the widget
+class ReusableCard extends StatelessWidget {
+  // const ReusableCard({
+  //   Key key,
+  // }) : super(key: key);
+
+  ReusableCard({@required this.colour});
+  //final keyword makes colour variable imutable
+  final Color colour;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: colour,
+      ),
     );
   }
 }
