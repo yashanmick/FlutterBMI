@@ -9,6 +9,12 @@ const activeCardColour = Color(0xFF1D1E33);
 const inactiveCardColour = Color(0XFF111328);
 const bottomContainerColour = Color(0xFFEB1555);
 
+//enums are really usefull when having a number of types as properties
+enum Gender {
+  male,
+  female,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -19,9 +25,9 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColour = inactiveCardColour;
 
   //1 -> male & 2 -> female
-  void updateColour(int gender) {
+  void updateColour(Gender selectedGender) {
     //1 - male card pressed
-    if (gender == 1) {
+    if (selectedGender == Gender.male) {
       if (maleCardColour == inactiveCardColour) {
         maleCardColour = activeCardColour;
       } else {
@@ -29,7 +35,7 @@ class _InputPageState extends State<InputPage> {
       }
     }
     //female card pressed
-    if (gender == 2) {
+    if (selectedGender == Gender.female) {
       if (femaleCardColour == inactiveCardColour) {
         femaleCardColour = activeCardColour;
       } else {
@@ -56,7 +62,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(1);
+                        updateColour(Gender.male);
                       });
                     },
                     child: ReusableCard(
@@ -72,7 +78,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(2);
+                        updateColour(Gender.female);
                       });
                     },
                     child: ReusableCard(
