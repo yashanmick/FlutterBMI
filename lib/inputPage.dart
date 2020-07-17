@@ -86,22 +86,35 @@ class _InputPageState extends State<InputPage> {
                         style: kNumberTextStyle,
                       ),
                       Text(
-                        height.toString(),
+                        'cm',
                         style: kLabelTextStyle,
                       ),
-                      Slider(
-                        value: height.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        activeColor: Color(0xFFEB1555),
-                        inactiveColor: Color(0xFF8D8E98),
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
-                      ),
                     ],
+                  ),
+                  SliderTheme(
+                    //customizing slider widget with additional styling with old styleing
+                    data: SliderTheme.of(context).copyWith(
+                      inactiveTrackColor: Color(0xFF8D8E98),
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xFFEB1555),
+                      overlayColor: Color(0x1fEB1555),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 20.0),
+                    ),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      //activeColor: Color(0xFFEB1555),
+                      //inactiveColor: Color(0xFF8D8E98),
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
