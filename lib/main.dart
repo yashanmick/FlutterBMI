@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'inputPage.dart';
+import 'resultsPage.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -18,7 +19,11 @@ class BMICalculator extends StatelessWidget {
                   Color(0xFFFFFFFF)), //dark theme already have white color text
         ),
       ),
-      home: InputPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => InputPage(),
+        '/resultsPage': (context) => ResultsPage(),
+      },
     );
   }
 }
