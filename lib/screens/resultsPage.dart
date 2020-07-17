@@ -5,6 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:BMI/components/bottomButton.dart';
 
 class ResultsPage extends StatelessWidget {
+  //in order to pass some data over (when we navigate over here), we have to create some of those properties.
+  ResultsPage(
+      {@required this.bmiResult,
+      @required this.resultText,
+      @required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +27,13 @@ class ResultsPage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Text(
-              'Your Result',
-              style: kTitleTextStyle,
+            child: Container(
+              padding: EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Your Result',
+                style: kTitleTextStyle,
+              ),
             ),
           ),
           Expanded(
@@ -31,15 +45,15 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Normal',
+                    resultText.toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.3',
+                    bmiResult.toString(),
                     style: kBMITextStyle,
                   ),
                   Text(
-                    'The BMI result is quite low, you should eat more!',
+                    interpretation,
                     textAlign: TextAlign.center,
                     style: kBodyTextStyle,
                   ),
@@ -48,9 +62,9 @@ class ResultsPage extends StatelessWidget {
             ),
           ),
           BottomButton(
-            buttonTitle: 'RECALCULATE',
+            buttonTitle: 'RE-CALCULATE',
             onTap: () {
-              Navigator.pushNamed(context, '/');
+              Navigator.pop(context);
             },
           ),
         ],

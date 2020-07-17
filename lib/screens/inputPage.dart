@@ -1,3 +1,4 @@
+import 'package:BMI/screens/resultsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:BMI/components/iconContent.dart';
@@ -5,6 +6,7 @@ import 'package:BMI/components/reusableCard.dart';
 import 'package:BMI/constants.dart';
 import 'package:BMI/components/bottomButton.dart';
 import 'package:BMI/components/roundIconButton.dart';
+import 'package:BMI/calculatorBrain.dart';
 
 //enums are really usefull when having a number of types as properties
 enum Gender {
@@ -218,7 +220,27 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
-              Navigator.pushNamed(context, '/resultsPage');
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI().toStringAsFixed(1),
+                    resultText: calc.getResults(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
+              // Navigator.pushNamed(
+              //   context,
+              //   '/resultsPage',
+              //   arguments: ResultsPage(
+              //     bmiResult: calc.calculateBMI(),
+              //     resultText: calc.getResults(),
+              //     interpretation: calc.getInterpretation(),
+              //   ),
+              // );
             },
           ),
         ],
